@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exception Handling in JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .output {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-left: 5px solid #007acc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exception Handling Examples in JavaScript</h1>
+
+    <div class="section">
+        <h2>1. Undeclared Variable Simulation</h2>
+        <div class="output" id="output1"></div>
+    </div>
+
+    <div class="section">
+        <h2>2. Divide by Zero Error</h2>
+        <div class="output" id="output2"></div>
+    </div>
+
+    <div class="section">
+        <h2>3. Array Index Out of Bounds</h2>
+        <div class="output" id="output3"></div>
+    </div>
+
+    <div class="section">
+        <h2>4. Finally Block Example</h2>
+        <div class="output" id="output4"></div>
+    </div>
+
+    <script>
+        // 1. Undeclared Variable Simulation
+        try {
+            let name; // declared but not initialized
+            let length = name.length; // will throw TypeError if name is undefined
+            document.getElementById('output1').innerText = "Length of name: " + length;
+        } catch (error) {
+            document.getElementById('output1').innerText = "Exception caught: Variable not initialized.";
+        }
+
+        // 2. Divide by Zero Error
+        try {
+            let a = 10;
+            let b = 0;
+            if (b === 0) {
+                throw new Error("Divide by zero error");
+            }
+            let result = a / b;
+            document.getElementById('output2').innerText = "Result: " + result;
+        } catch (error) {
+            document.getElementById('output2').innerText = "Exception caught: " + error.message;
+        }
+
+        // 3. Array Index Out of Bounds
+        try {
+            let arr = [1, 2, 3];
+            let index = 5;
+            if (index >= arr.length) {
+                throw new Error("Array index out of bounds");
+            }
+            document.getElementById('output3').innerText = "Value: " + arr[index];
+        } catch (error) {
+            document.getElementById('output3').innerText = "Exception caught: " + error.message;
+        }
+
+        // 4. Finally Block Example
+        try {
+            let x = 10, y = 0;
+            if (y === 0) throw new Error("Divide by zero");
+            let res = x / y;
+            document.getElementById('output4').innerText = "Result: " + res;
+        } catch (error) {
+            document.getElementById('output4').innerText = "Exception caught: " + error.message;
+        } finally {
+            document.getElementById('output4').innerText += "\nFinally block executed.";
+        }
+    </script>
+</body>
+</html>
